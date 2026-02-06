@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <title>Título da página</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    Aqui vai o código HTML que fará seu site aparecer.
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="background-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <main class="glass-card">
+        <header>
+            <div class="profile-img">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt="Foto de Perfil">
+            </div>
+            <h1>Brunno Henrique</h1>
+            <p class="tagline">Senior Software Engineer & Tech Visionary</p>
+        </header>
+
+        <section class="content">
+            <p>Transformando ideias complexas em experiências digitais impecáveis. Especialista em arquitetura escalável e interfaces de alto impacto.</p>
+        </section>
+
+        <footer class="actions">
+            <a href="#" class="btn primary">
+                <i data-lucide="send"></i> Contato
+            </a>
+            <div class="social-links">
+                <a href="#"><i data-lucide="github"></i></a>
+                <a href="#"><i data-lucide="linkedin"></i></a>
+                <a href="#"><i data-lucide="globe"></i></a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
 </html>
