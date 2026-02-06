@@ -1,224 +1,262 @@
 :root {
-    /* Paleta de cores mais quente e vibrante (Sunset/Aurora) */
-    --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
-    --glow-color: rgba(236, 72, 153, 0.5); /* Cor rosa/roxo para o brilho */
-    
-    --bg-main: #050505; /* Fundo quase preto */
-    --text-white: #ffffff;
-    --text-muted: #9ca3af;
+    --primary-gradient: linear-gradient(135deg, #FF6B6B 0%, #FFD93D 100%);
+    --bg-dark: #0f0f13;
+    --glass-bg: rgba(20, 20, 25, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --accent: #FFD93D;
     
     font-family: 'Outfit', sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    background-color: var(--bg-main);
-    min-height: 100vh;
+    background-color: var(--bg-dark);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    color: var(--text-white);
-    padding: 20px;
+    margin: 0;
 }
 
-/* =========================================
-   Fundo Aurora (Mais complexo e suave)
-   ========================================= */
+/* Fundo Atmosférico */
 .aurora-bg {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    position: absolute;
+    width: 100%; height: 100%;
     z-index: -1;
     overflow: hidden;
-    filter: blur(100px); /* Desfoque extremo para suavidade */
 }
 
 .aurora-blob {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.6;
-    mix-blend-mode: screen;
-    animation: float 20s infinite ease-in-out alternate;
+    filter: blur(80px);
+    opacity: 0.4;
 }
 
 .blob-1 {
-    background: #8b5cf6; /* Roxo */
-    width: 600px; height: 600px;
-    top: -20%; left: -10%;
+    width: 500px; height: 500px;
+    background: #4f46e5;
+    top: -10%; left: -10%;
+    animation: float 15s infinite alternate;
 }
 
 .blob-2 {
-    background: #ec4899; /* Rosa */
-    width: 500px; height: 500px;
-    bottom: -10%; right: -10%;
-    animation-delay: -5s;
-}
-
-.blob-3 {
-    background: #f59e0b; /* Laranja */
     width: 400px; height: 400px;
-    bottom: 30%; left: 30%;
-    animation-delay: -10s;
+    background: #ec4899;
+    bottom: -10%; right: -10%;
+    animation: float 12s infinite alternate-reverse;
 }
 
 @keyframes float {
-    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-    100% { transform: translate(50px, 50px) rotate(20deg) scale(1.1); }
+    from { transform: translate(0,0); }
+    to { transform: translate(40px, 40px); }
 }
 
-/* =========================================
-   O Cartão de Vidro Premium
-   ========================================= */
-.glass-card-container {
-    /* Truque para criar uma borda gradiente fina */
+/* Container Principal com Efeito de Borda Brilhante */
+.card-wrapper {
     position: relative;
-    padding: 1px; /* Espessura da borda */
-    border-radius: 24px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
-    /* Adiciona o gradiente colorido na borda ao passar o mouse */
-    transition: background 0.5s ease;
+    width: 380px;
+    padding: 1px; /* Espaço para a borda gradiente */
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.glass-card-container:hover {
-     background: var(--accent-gradient);
-     box-shadow: 0 0 40px -10px var(--glow-color);
+.card-wrapper:hover {
+    transform: translateY(-10px);
 }
 
-.glass-card {
-    background: rgba(10, 10, 10, 0.65); /* Fundo escuro semi-transparente */
-    backdrop-filter: blur(30px) saturate(120%);
-    -webkit-backdrop-filter: blur(30px) saturate(120%);
-    border-radius: 24px;
-    padding: 48px 32px;
-    width: 100%;
-    max-width: 420px;
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-gradient);
+    color: #1a1a1a;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(255, 217, 61, 0.4);
+}
+
+.glass-product {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 28px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
-    position: relative;
-    z-index: 2;
+    height: 100%;
 }
 
-/* =========================================
-   Elementos do Cabeçalho
-   ========================================= */
-.abstract-emblem {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 24px;
+/* Visual do Produto (Ícone Flutuante) */
+.product-visual {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 16px; /* Formato "Squircle" moderno */
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Sombra interna brilhante */
-    box-shadow: inset 0 0 20px -5px var(--glow-color);
 }
 
-.glowing-icon {
-    color: #ec4899;
-    filter: drop-shadow(0 0 8px var(--glow-color));
+.visual-glow {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: var(--primary-gradient);
+    border-radius: 20px;
+    filter: blur(20px);
+    opacity: 0.4;
+    animation: pulse 3s infinite;
 }
 
-.gradient-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-    line-height: 1.1;
-    /* Mágica do texto gradiente */
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.product-icon {
+    position: relative;
+    width: 48px; height: 48px;
+    color: #fff;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    animation: floatIcon 4s ease-in-out infinite;
 }
 
-.separator {
-    width: 40px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.1);
-    margin: 0 auto 16px;
-    border-radius: 10px;
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
 }
 
-.tagline {
-    font-size: 1.1rem;
-    color: var(--text-white);
-    font-weight: 500;
-    letter-spacing: 0.5px;
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Informações */
+.product-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.product-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
     margin-bottom: 24px;
 }
 
-.content p {
-    color: var(--text-muted);
-    line-height: 1.7;
-    font-size: 1rem;
-    margin-bottom: 40px;
-    font-weight: 300;
-}
-
-/* =========================================
-   Botões e Ações
-   ========================================= */
-.btn-glow {
-    position: relative;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 12px;
-    padding: 1px; /* Para a borda */
-    background: var(--accent-gradient);
+/* Lista de Features */
+.features-list {
+    list-style: none;
     width: 100%;
-    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 0;
+    margin-bottom: 32px;
+    text-align: left;
+    background: rgba(255,255,255,0.03);
+    border-radius: 16px;
+    padding: 16px;
 }
 
-.btn-content {
+.features-list li {
     display: flex;
     align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+}
+
+.features-list li:last-child {
+    margin-bottom: 0;
+}
+
+.features-list li svg {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+}
+
+/* Preço */
+.pricing-section {
+    margin-bottom: 24px;
+}
+
+.price-box {
+    display: flex;
+    align-items: flex-start;
     justify-content: center;
-    gap: 10px;
-    background: #0f0f0f; /* Fundo interno do botão para contraste */
-    color: var(--text-white);
-    padding: 14px 28px;
-    border-radius: 11px; /* Ligeiramente menor que o pai */
+    line-height: 1;
+    color: var(--text-main);
+}
+
+.currency {
+    font-size: 1.2rem;
+    margin-top: 6px;
+    margin-right: 4px;
+    font-weight: 500;
+}
+
+.amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px;
+}
+
+.cents {
+    font-size: 1.2rem;
+    margin-top: 6px;
     font-weight: 600;
-    transition: background 0.3s;
 }
 
-.btn-glow:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px -10px var(--glow-color);
-}
-
-.btn-glow:hover .btn-content {
-    background: transparent; /* Revela o gradiente total ao passar o mouse */
-}
-
-.social-links {
-    margin-top: 32px;
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-}
-
-.social-links a {
+.old-price {
+    font-size: 0.9rem;
     color: var(--text-muted);
-    transition: all 0.3s;
+    text-decoration: line-through;
+    margin-top: 4px;
+}
+
+/* Botão de Compra */
+.btn-buy {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    background: var(--primary-gradient);
+    color: #1a1a1a;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid transparent;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
 }
 
-.social-links a:hover {
-    color: var(--text-white);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-    transform: scale(1.1);
+.btn-buy:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
+}
+
+.btn-buy svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+.btn-buy:hover svg {
+    transform: translateX(4px);
 }
