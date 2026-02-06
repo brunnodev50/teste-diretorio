@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abstract Vision</title>
+    <title>Premium Product Card</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -13,38 +13,51 @@
     <div class="aurora-bg">
         <div class="aurora-blob blob-1"></div>
         <div class="aurora-blob blob-2"></div>
-        <div class="aurora-blob blob-3"></div>
     </div>
 
-    <main class="glass-card-container">
-        <div class="glass-card">
-            <header>
-                <div class="abstract- emblem">
-                    <i data-lucide="cpu" class="glowing-icon"></i>
-                </div>
-                
-                <h1 class="gradient-title">Brunno Henrique</h1>
-                <div class="separator"></div>
-                <p class="tagline">Arquiteto de Soluções Digitais</p>
-            </header>
+    <main class="card-wrapper">
+        <div class="badge">Best Seller</div>
 
-            <section class="content">
-                <p>Especializado em construir o invisível: sistemas robustos, interfaces limpas e experiências de usuário que parecem mágica.</p>
-            </section>
+        <div class="glass-product">
+            
+            <div class="product-visual">
+                <div class="visual-glow"></div>
+                <i data-lucide="box" class="product-icon"></i>
+            </div>
 
-            <footer class="actions">
-                <a href="#" class="btn btn-glow">
-                    <span class="btn-content">
-                        <i data-lucide="sparkles" size="18"></i> Ver Projetos
-                    </span>
-                </a>
+            <div class="product-info">
+                <h2 class="product-title">Ultimate Dev Kit</h2>
+                <p class="product-desc">A ferramenta definitiva para escalar seus projetos com design system completo.</p>
                 
-                <div class="social-links">
-                    <a href="#" aria-label="GitHub"><i data-lucide="github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-                    <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                <ul class="features-list">
+                    <li>
+                        <i data-lucide="check-circle-2"></i>
+                        <span>Acesso Vitalício</span>
+                    </li>
+                    <li>
+                        <i data-lucide="check-circle-2"></i>
+                        <span>Suporte Premium 24/7</span>
+                    </li>
+                    <li>
+                        <i data-lucide="check-circle-2"></i>
+                        <span>Atualizações Semanais</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pricing-section">
+                <div class="price-box">
+                    <span class="currency">R$</span>
+                    <span class="amount">297</span>
+                    <span class="cents">,90</span>
                 </div>
-            </footer>
+                <div class="old-price">de R$ 499,90</div>
+            </div>
+
+            <button class="btn-buy">
+                <span>Comprar Agora</span>
+                <i data-lucide="arrow-right"></i>
+            </button>
         </div>
     </main>
 
