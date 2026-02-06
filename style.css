@@ -1,156 +1,224 @@
 :root {
-    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --text-main: #ffffff;
-    --text-dim: #e2e8f0;
+    /* Paleta de cores mais quente e vibrante (Sunset/Aurora) */
+    --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
+    --glow-color: rgba(236, 72, 153, 0.5); /* Cor rosa/roxo para o brilho */
+    
+    --bg-main: #050505; /* Fundo quase preto */
+    --text-white: #ffffff;
+    --text-muted: #9ca3af;
+    
+    font-family: 'Outfit', sans-serif;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
 }
 
 body {
-    background-color: #0f172a;
-    height: 100vh;
+    background-color: var(--bg-main);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    color: var(--text-main);
+    color: var(--text-white);
+    padding: 20px;
 }
 
-/* Círculos de fundo para efeito de profundidade */
-.background-circles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+/* =========================================
+   Fundo Aurora (Mais complexo e suave)
+   ========================================= */
+.aurora-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     z-index: -1;
+    overflow: hidden;
+    filter: blur(100px); /* Desfoque extremo para suavidade */
 }
 
-.circle {
+.aurora-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
+    opacity: 0.6;
+    mix-blend-mode: screen;
+    animation: float 20s infinite ease-in-out alternate;
 }
 
-.circle-1 {
-    width: 300px;
-    height: 300px;
-    background: #4f46e5;
-    top: 10%;
-    left: 15%;
-    animation: move 10s infinite alternate;
+.blob-1 {
+    background: #8b5cf6; /* Roxo */
+    width: 600px; height: 600px;
+    top: -20%; left: -10%;
 }
 
-.circle-2 {
-    width: 400px;
-    height: 400px;
-    background: #7c3aed;
-    bottom: 10%;
-    right: 15%;
-    animation: move 12s infinite alternate-reverse;
+.blob-2 {
+    background: #ec4899; /* Rosa */
+    width: 500px; height: 500px;
+    bottom: -10%; right: -10%;
+    animation-delay: -5s;
 }
 
-@keyframes move {
-    from { transform: translate(0, 0); }
-    to { transform: translate(50px, 100px); }
+.blob-3 {
+    background: #f59e0b; /* Laranja */
+    width: 400px; height: 400px;
+    bottom: 30%; left: 30%;
+    animation-delay: -10s;
 }
 
-/* Card principal */
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    100% { transform: translate(50px, 50px) rotate(20deg) scale(1.1); }
+}
+
+/* =========================================
+   O Cartão de Vidro Premium
+   ========================================= */
+.glass-card-container {
+    /* Truque para criar uma borda gradiente fina */
+    position: relative;
+    padding: 1px; /* Espessura da borda */
     border-radius: 24px;
-    padding: 40px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+    /* Adiciona o gradiente colorido na borda ao passar o mouse */
+    transition: background 0.5s ease;
+}
+
+.glass-card-container:hover {
+     background: var(--accent-gradient);
+     box-shadow: 0 0 40px -10px var(--glow-color);
+}
+
+.glass-card {
+    background: rgba(10, 10, 10, 0.65); /* Fundo escuro semi-transparente */
+    backdrop-filter: blur(30px) saturate(120%);
+    -webkit-backdrop-filter: blur(30px) saturate(120%);
+    border-radius: 24px;
+    padding: 48px 32px;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     text-align: center;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 2;
 }
 
-.glass-card:hover {
-    transform: translateY(-5px);
+/* =========================================
+   Elementos do Cabeçalho
+   ========================================= */
+.abstract-emblem {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px; /* Formato "Squircle" moderno */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Sombra interna brilhante */
+    box-shadow: inset 0 0 20px -5px var(--glow-color);
 }
 
-.profile-img img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    border: 3px solid #a855f7;
-    margin-bottom: 20px;
-    object-fit: cover;
+.glowing-icon {
+    color: #ec4899;
+    filter: drop-shadow(0 0 8px var(--glow-color));
 }
 
-h1 {
-    font-size: 1.8rem;
+.gradient-title {
+    font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 8px;
-    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+    line-height: 1.1;
+    /* Mágica do texto gradiente */
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.separator {
+    width: 40px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 auto 16px;
+    border-radius: 10px;
 }
 
 .tagline {
-    color: #a855f7;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-transform: uppercase;
+    font-size: 1.1rem;
+    color: var(--text-white);
+    font-weight: 500;
+    letter-spacing: 0.5px;
     margin-bottom: 24px;
 }
 
 .content p {
-    color: var(--text-dim);
-    line-height: 1.6;
-    font-size: 0.95rem;
-    margin-bottom: 30px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 40px;
+    font-weight: 300;
 }
 
-/* Botões e Links */
-.actions {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.btn.primary {
-    background: var(--primary-gradient);
-    color: white;
+/* =========================================
+   Botões e Ações
+   ========================================= */
+.btn-glow {
+    position: relative;
     text-decoration: none;
-    padding: 12px 24px;
+    display: inline-block;
     border-radius: 12px;
-    font-weight: 600;
+    padding: 1px; /* Para a borda */
+    background: var(--accent-gradient);
+    width: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: opacity 0.2s;
+    gap: 10px;
+    background: #0f0f0f; /* Fundo interno do botão para contraste */
+    color: var(--text-white);
+    padding: 14px 28px;
+    border-radius: 11px; /* Ligeiramente menor que o pai */
+    font-weight: 600;
+    transition: background 0.3s;
 }
 
-.btn.primary:hover {
-    opacity: 0.9;
+.btn-glow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px -10px var(--glow-color);
+}
+
+.btn-glow:hover .btn-content {
+    background: transparent; /* Revela o gradiente total ao passar o mouse */
 }
 
 .social-links {
+    margin-top: 32px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 24px;
 }
 
 .social-links a {
-    color: var(--text-dim);
-    transition: color 0.2s;
+    color: var(--text-muted);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
 }
 
 .social-links a:hover {
-    color: white;
-}
-
-svg {
-    width: 20px;
-    height: 20px;
+    color: var(--text-white);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.1);
 }
